@@ -46,6 +46,8 @@ def list_devices():
         if not m:
             continue
         num, target, vidpid, serial, name, _hash, ifs = m.groups()
+        if vidpid.startswith("1d6b:"):
+            continue
         ifs = ifs.strip("{} ")
         ifaces = sorted({i.split(":")[0] for i in ifs.split()})
         status = {"allow": "allowed", "block": "blocked", "reject": "blocked"}.get(target, "pending")
