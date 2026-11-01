@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}USB Guard{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><div class="layout">
+<aside>
+  <div class="brand">USB Guard</div><div class="sub">Admin Console</div>
+  <a class="nav {{ 'on' if page=='devices' }}" href="{{ url_for('devices') }}">Devices</a>
+  <a class="nav {{ 'on' if page=='trusted' }}" href="{{ url_for('trusted') }}">Trusted list</a>
+  <a class="nav {{ 'on' if page=='alerts' }}" href="{{ url_for('alerts') }}">Alerts</a>
+  <div class="foot">Mode: {{ mode }}<br><a href="{{ url_for('logout') }}">Log out</a></div>
+</aside>
+<main>
+  <div class="head"><h1>{% block h1 %}{% endblock %}</h1><div>Signed in as <b>{{ session.user }}</b></div></div>
+  {% with msgs = get_flashed_messages() %}{% for m in msgs %}<div class="flash">{{ m }}</div>{% endfor %}{% endwith %}
+  {% block body %}{% endblock %}
+</main></div></body></html>
