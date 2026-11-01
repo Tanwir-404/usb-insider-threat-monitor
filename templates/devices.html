@@ -2,20 +2,20 @@
 {% block h1 %}Devices{% endblock %}
 {% block body %}
 <div class="stats">
-  <div class="card"><b>{{ stats.total }}</b>Devices seen</div>
-  <div class="card"><b>{{ stats.allowed }}</b>Allowed</div>
-  <div class="card"><b>{{ stats.pending }}</b>Pending</div>
-  <div class="card"><b>{{ stats.blocked }}</b>Blocked</div>
+  <div class="card"><b>{{ stats.total }}</b><span>Devices seen</span></div>
+  <div class="card"><b>{{ stats.allowed }}</b><span>Allowed</span></div>
+  <div class="card"><b>{{ stats.pending }}</b><span>Pending</span></div>
+  <div class="card"><b>{{ stats.blocked }}</b><span>Blocked</span></div>
 </div>
-<div class="card"><table>
+<div class="card"><div class="table-scroll"><table>
 <tr><th>Device</th><th>VID:PID</th><th>Class</th><th>Status</th><th>Action</th></tr>
 {% for d in devices %}
-<tr><td><b>{{ d.name }}</b>{% if d.suspicious %}<br><span class="b r">Suspicious: keyboard + storage</span>{% endif %}</td>
-<td>{{ d.vidpid }}</td><td>{{ d.classes }}</td>
+<tr><td><b>{{ d.name }}</b>{% if d.suspicious %}<br><span class="b suspicious">Suspicious: keyboard + storage</span>{% endif %}</td>
+<td class="mono">{{ d.vidpid }}</td><td>{{ d.classes }}</td>
 <td><span class="b {{ {'allowed':'g','pending':'y','blocked':'r'}[d.status] }}">{{ d.status|capitalize }}</span></td>
 <td>
 {% if d.status != 'allowed' %}<form method="post" action="{{ url_for('allow', dev_id=d.id) }}"><button class="btn al">Allow</button></form>{% endif %}
 {% if d.status != 'blocked' %}<form method="post" action="{{ url_for('block', dev_id=d.id) }}"><button class="btn bl">Block</button></form>{% endif %}
 </td></tr>
-{% endfor %}</table></div>
+{% endfor %}</table></div></div>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block h1 %}Trusted list{% endblock %}
 {% block body %}
-<div class="card"><table>
+<div class="card"><div class="table-scroll"><table>
 <tr><th>Device</th><th>VID:PID</th><th>Class</th><th>Approved</th><th>Action</th></tr>
 {% for d in devices %}
-<tr><td><b>{{ d.name }}</b></td><td>{{ d.vidpid }}</td><td>{{ d.classes }}</td><td>{{ d.approved or '-' }}</td>
+<tr><td><b>{{ d.name }}</b></td><td class="mono">{{ d.vidpid }}</td><td>{{ d.classes }}</td><td class="mono">{{ d.approved or '-' }}</td>
 <td><form method="post" action="{{ url_for('block', dev_id=d.id) }}"><button class="btn rv">Revoke</button></form></td></tr>
 {% else %}<tr><td colspan="5">No trusted devices yet.</td></tr>{% endfor %}
-</table></div>
+</table></div></div>
 {% endblock %}

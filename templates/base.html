@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}USB Guard{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body><div class="layout">
 <aside>
@@ -8,6 +9,7 @@
   <a class="nav {{ 'on' if page=='devices' }}" href="{{ url_for('devices') }}">Devices</a>
   <a class="nav {{ 'on' if page=='trusted' }}" href="{{ url_for('trusted') }}">Trusted list</a>
   <a class="nav {{ 'on' if page=='alerts' }}" href="{{ url_for('alerts') }}">Alerts</a>
+  <div class="side-status"><span class="dot" aria-hidden="true"></span><span>Monitoring active</span></div>
   <div class="foot">Mode: {{ mode }}<br><a href="{{ url_for('logout') }}">Log out</a></div>
 </aside>
 <main>

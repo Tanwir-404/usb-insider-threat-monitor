@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login - USB Guard</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<title>Login - USB Guard</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body class="loginbg"><div class="card login">
-<h1>USB Guard</h1><p class="muted">Admin Console</p>
+<div class="shield" aria-hidden="true"><svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 3 43 10v14c0 13-8.4 22.5-19 28C13.4 46.5 5 37 5 24V10L24 3Z" stroke="currentColor" stroke-width="2.4"/><path d="m16 27 5.2 5.2L33 20.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<h1>USB Guard - Insider Threat Monitor</h1><p class="muted">Secure admin console</p>
 {% with msgs = get_flashed_messages() %}{% for m in msgs %}<div class="flash">{{ m }}</div>{% endfor %}{% endwith %}
 <form method="post">
 <label for="u">Username</label><input id="u" name="username" required>

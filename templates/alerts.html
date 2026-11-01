@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block h1 %}Alerts{% endblock %}
 {% block body %}
-<div class="card"><p class="muted">Latest USB alerts from Wazuh</p><table>
+<div class="card"><p class="muted">Latest USB alerts from Wazuh</p><div class="table-scroll"><table>
 <tr><th>Time</th><th>Level</th><th>Rule</th><th>Detail</th></tr>
 {% for a in alerts %}
-<tr><td>{{ a.time }}</td><td><span class="b {{ 'r' if a.level >= 12 else ('y' if a.level >= 8 else 'g') }}">{{ a.level }}</span></td>
+<tr><td class="mono">{{ a.time }}</td><td><span class="b {{ 'r' if a.level >= 12 else ('y' if a.level >= 8 else 'g') }} {{ 'critical' if a.level >= 15 else '' }}">{{ a.level }} · {{ 'Critical' if a.level >= 15 else ('High' if a.level >= 12 else ('Medium' if a.level >= 8 else 'Low')) }}</span></td>
 <td><b>{{ a.rule }}</b></td><td>{{ a.detail }}</td></tr>
 {% else %}<tr><td colspan="4">No alerts found.</td></tr>{% endfor %}
-</table></div>
+</table></div></div>
 {% endblock %}
